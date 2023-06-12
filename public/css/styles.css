@@ -1,0 +1,233 @@
+     @font-face {
+            font-family: 'Bit5x3';
+            src: url('../fonts/Bit5x3.woff2') format('woff2'),
+                url('../fonts/Bit5x3.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        #thanks {
+
+            text-align: center;
+            font-size: 40px;
+            padding-top: 5vh;
+        }
+        #madeBy {
+
+    text-align: center;
+     
+      position: absolute;
+      bottom: 5vh;
+      width: 100%;
+      font-size: 20px;
+      line-height: 20px;
+} 
+a {
+    color: white;
+    text-decoration: none;
+}
+#madeBy img {
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+        
+
+        html, body {
+            font-family: 'Bit5x3';
+            background-color: rgb(36, 0, 143);
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+        }
+
+        #logo {
+            position: fixed;
+            left: 30px;
+            right: 30px;
+            top: 30px;
+            bottom: 75%;
+        }
+        #logo img {
+            display: block;
+            margin: 0 auto;
+            height: 100%;
+              position: relative;
+              top: 50%;
+              transform: translateY(-50%);
+        }
+
+        #main {
+            position: fixed;
+            left: 5vw;
+            right: 5vw;
+            bottom: 5vw;
+            top: 25%;
+            background-color: black;
+        }
+
+        .panel {
+            padding: 30px;
+            font-size: 30px;
+            line-height: 35px;
+            text-align: center;
+              position: relative;
+              top: 50%;
+              transform: translateY(-50%);
+              display: none;
+        }
+
+        h3, h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 40px;
+        }
+
+        input {
+            display: inline-block;
+            padding: 0;
+            width: 22%;
+            padding-top: 10%;
+            padding-bottom: 10%;
+            font-size: 50px;
+            line-height: 1;
+            text-align: center;
+            font-family: 'Bit5x3';
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .panel#gameOver {
+        }
+        .panel#play {
+            
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              transform: none;
+            display: none;
+            left: 0;
+            right: 0;
+            display: block;
+        
+        }
+
+        #message {
+            display: none;
+        }
+
+        #livesBox {
+
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            line-height: 60px;
+            font-size: 65px;
+            text-align: center;
+            pointer-events: none;
+        }
+        #livesBox div {
+            font-size: 30px;
+            display: block;
+            line-height: 30px;
+        }
+
+        button {
+            border: 2px solid white;
+            padding: 15px;
+            font-size: 40px;
+            font-family: 'Bit5x3';
+            line-height: 1;
+            background-color: black;
+            display: block;
+            color: white;
+            margin: 0 auto;
+        }
+
+        #throttle {
+            width: 100%;
+            left: 0;
+            top: 30px;
+            bottom: 30px;
+            position: absolute;
+        }
+
+        #throttleUp {
+            position: absolute;
+            top: 0;
+            bottom: 55%;
+            width: 40%;
+            left: 30%;
+            background: rgb(26, 217, 112);
+background: linear-gradient(180deg, rgba(26, 217, 112,1) 0%, rgba(26, 217, 112,0) 100%);
+        }
+        #throttleDown {
+            position: absolute;
+            top: 55%;
+            left: 30%;
+            bottom: 0;
+            width: 40%;
+            background: rgb(45,179,165);
+background: linear-gradient(0deg, rgba(45,179,165,1) 0%, rgba(45,179,165,0) 100%);
+        }
+
+        #throttleNeutral, #throttleDown, #throttleUp, #throttleCurrent {
+            pointer-events: none;
+        }
+
+        #throttleCurrent {
+            position: absolute;
+            left: 25%;
+            width: 50%;
+            height: 5%;
+            margin-top: -2.5%;
+            top: 50%;
+            background-color: white;
+            box-shadow:  0 0 20px red;
+        }
+
+        #slider-vertical {
+            
+            
+            background: rgb(26, 217, 112);
+background: linear-gradient(0deg, rgba(26, 217, 112,1) 0%, rgba(26, 217, 112,0) 50%, rgba(175, 26, 217,0) 50%, rgba(175, 26, 217,1) 100%);
+            height: 300px;
+            
+            width: 60%;
+        }
+
+
+        .ui-slider .ui-slider-handle {
+    right: -0.3em;
+    width: auto;
+        }
+
+        .ui-slider .ui-slider-handle.ui-state-active {
+            box-shadow: 0 0 50px red;
+            background-color: #eeeeee;
+        }
+
+        .ui-slider .ui-slider-range {
+            display: none;
+        }
+        @media (orientation: portrait) {
+            #logo {
+                bottom: 82%;
+            }
+            #main {
+                top: 22%;
+            }
+            #logo img {
+                height: auto;
+                max-width: 93%;
+            }
+        }

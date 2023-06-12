@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Test</title>
+    <link rel="stylesheet" href="js/jquery-ui-1.13.2.custom/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+
+
+<body>
+    <div id="logo"><img src="./img/logo.png" alt="Polypong logo"></div>
+    <div id="main">
+        <div class="panel" id="gameOver">
+            <h2>GAME OVER!</h2>
+            <h3>Submit initials</h3>
+            <input type="text" id="i0" maxlength="1" size="1" />
+            <input type="text" id="i1" maxlength="1" size="1" />
+            <input type="text" id="i2" maxlength="1" size="1" />
+            <button id="submitInitials">Done</button>
+        </div>
+
+        <div class="panel" id="play">
+            
+            <div id="livesBox"><div>lives</div><span id="lives">05</span></div>
+            
+            <div id="slider-vertical"></div>
+        </div>
+        <div class="panel" id="message">Another player is occupying that slot. Scan another slot's QR code or wait for a player to finish and scan theirs.</div>
+        <div class="panel" id="thanks">Thanks for playing!</div>
+    </div>
+
+    <div id="output" style="display: none;font-family: Arial; font-size: 14px;"></div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/index.js"></script>
+    <!-- <script src="js/reconnecting-websocket.min.js"></script> -->
+
+</body>
+
+</html>

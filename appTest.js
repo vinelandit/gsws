@@ -1,26 +1,22 @@
-"use strict";
+const express = require("express");
+const http = require("http");
+const ws = require("ws");
+const path = require("path");
 
-var isLocal = false;
-if (!process.env.PORT) {
-    isLocal = true;
-}
-
-const http = require('http');
-const https = require('https');
-const ws = require('ws');
-const url = require('url');
-const fs = require('fs');
-const path = require('path');
-
-
-const express = require('express');
 const app = express();
+app.use(express.static(path.join(__dirname, "./public")));
+app.get("/", (req, res) => { res.sendFile(path.join(__dirname, "index.html")) });
 
-var wss = null;
+console.log('hello');
+
+var tdClient = null;
+
+var lastMessage;
 
 const playerData = {};
 
-var tdClient = null;
+const httpServer = http.createServer(app);
+const wss = new ws.Server({ server: httpServer });
 
 setInterval(function() {
 
@@ -29,51 +25,6 @@ setInterval(function() {
     }
 
 }, 20);
-
-if(isLocal) {
-
-  console.log('LOCAL MODE');
-
-  const keyfile = fs.readdirSync('./ssl/keys').filter(fn => fn.endsWith('.key'))[0];
-  const certfile = fs.readdirSync('./ssl/certs').filter(fn => fn.endsWith('.crt'))[0];
-  const key = fs.readFileSync('./ssl/keys/' + keyfile);
-  const cert = fs.readFileSync('./ssl/certs/' + certfile);
-
-
-  const sslOptions = {
-    key: key,
-    cert: cert
-  }
-
-
-  app.use('/', express.static(__dirname + '/../dist/spa/')); //  adjust
-  // app.listen(303, function() { console.log('listening'); });
-
-  const httpServer = http.createServer(app).listen(303);
-  const httpsServer = https.createServer(sslOptions, app).listen(443);
-
-
-
-
-  wss = new ws.WebSocketServer({ server: httpsServer });
-} else {
-  // remote heroku websocket server
-
-  console.log('REMOTE MODE');
-
-  app.use(express.static(path.join(__dirname, "./public")));
-  app.get("/", (req, res) => { res.sendFile(path.join(__dirname, "index.html")) });
-
-
-
-  const httpServer = http.createServer(app);
-  wss = new ws.Server({ server: httpServer });
-
-
-  const port = process.env.PORT || 3000;
-  httpServer.listen(port, () => { console.log("Server started. Port: ", port); });
-}
-
 
 
 wss.on("connection",
@@ -137,6 +88,5 @@ wss.on("connection",
         
     });
 
-
-
-
+const port = process.env.PORT || 3000;
+httpServer.listen(port, () => { console.log("Server started. Port: ", port); });

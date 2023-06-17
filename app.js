@@ -1,5 +1,7 @@
 "use strict";
 
+console.log('Websocket server');
+
 var isLocal = false;
 if (!process.env.PORT) {
     isLocal = true;

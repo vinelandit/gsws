@@ -2,6 +2,13 @@
 
 console.log('Websocket server');
 
+function extractUrlValue(key, url)
+{
+    
+    var match = url.match('[?&]' + key + '=([^&]+)');
+    return match ? match[1] : null;
+}
+
 var isLocal = false;
 if (!process.env.PORT) {
     isLocal = true;
@@ -129,9 +136,8 @@ wss.on("connection",
                 
             }
         } else {
-            req.url.indexOf('TOUCHDESIGNER')>-1
-            console.log('Registering phone client');
-            pid = req.query.pid
+            pid = extractUrlValue('pid', req.url);
+            console.log('Registering phone client ' + pid);
             playerClients['' + pid] = ws;
 
             // handler for messages from phones

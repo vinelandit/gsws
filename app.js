@@ -21,6 +21,7 @@ const app = express();
 var wss = null;
 
 const playerData = {};
+const playerClients = {};
 
 var tdClient = null;
 
@@ -102,7 +103,20 @@ wss.on("connection",
                                 delete playerData[a];
                             }
                             wss.clients.forEach(function each(client) {
-                              if (client !== ws && client.readyState === WebSocket.OPEN) {
+                              if (client !== tdClient && client.readyState === WebSocket.OPEN) {
+                                client.close();
+                              }
+                            });
+                        } else if (data.command == 'SIGTERM_ET_ALL') {
+                            console.log('Received terminate command from TD');
+                            for(var a in playerData) {
+                                delete playerData[a];
+                            }
+                            for(var a in playerClients) {
+                                playerClients[a].send(JSON.stringify(data));
+                            }
+                            wss.clients.forEach(function each(client) {
+                              if (client !== tdClient && client.readyState === WebSocket.OPEN) {
                                 client.close();
                               }
                             });
@@ -116,6 +130,8 @@ wss.on("connection",
             }
         } else {
             console.log('Registering phone client');
+
+            playerClients['' + data.pid] = ws;
 
             // handler for messages from phones
             ws.onmessage =

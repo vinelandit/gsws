@@ -136,7 +136,7 @@ wss.on("connection",
                 
             }
         } else {
-            pid = extractUrlValue('pid', req.url);
+            const pid = extractUrlValue('pid', req.url);
             console.log('Registering phone client ' + pid);
             playerClients['' + pid] = ws;
 

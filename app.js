@@ -129,9 +129,10 @@ wss.on("connection",
                 
             }
         } else {
+            req.url.indexOf('TOUCHDESIGNER')>-1
             console.log('Registering phone client');
-
-            playerClients['' + data.pid] = ws;
+            pid = req.query.pid
+            playerClients['' + pid] = ws;
 
             // handler for messages from phones
             ws.onmessage =

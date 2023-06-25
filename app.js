@@ -110,7 +110,7 @@ wss.on("connection",
                                 delete playerData[a];
                             }
                             wss.clients.forEach(function each(client) {
-                              if (client !== tdClient && client.readyState === WebSocket.OPEN) {
+                              if (client !== tdClient && client.readyState === client.OPEN) {
                                 client.close();
                               }
                             });
@@ -123,7 +123,7 @@ wss.on("connection",
                                 playerClients[a].send(JSON.stringify(data));
                             }
                             wss.clients.forEach(function each(client) {
-                              if (client !== tdClient && client.readyState === WebSocket.OPEN) {
+                              if (client !== tdClient && client.readyState === client.OPEN) {
                                 client.close();
                               }
                             });

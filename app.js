@@ -152,6 +152,10 @@ wss.on("connection",
 
                         playerData['' + data.pid] = data;
                     }
+
+                    if(data.pid && data.pid == 'echo') {
+                        ws.send(JSON.stringify(data));
+                    }
                     
                 }
                 

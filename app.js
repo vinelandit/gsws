@@ -138,8 +138,10 @@ wss.on("connection",
         } else {
             const pid = extractUrlValue('pid', req.url);
             console.log('Registering phone client ' + pid);
-            playerClients['' + pid] = ws;
-
+            if(pid && pid != 'echo') {
+                playerClients['' + pid] = ws;
+            }
+            
             // handler for messages from phones
             ws.onmessage =
             (event) =>

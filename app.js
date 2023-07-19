@@ -90,8 +90,8 @@ wss.on("connection",
     (ws, req) =>
     {
         console.log("Client connected");
-        if(req.url.indexOf('TOUCHDESIGNER')>-1) {
-            console.log('Registering TD client');
+        if(req.url.indexOf('RELAY')>-1) {
+            console.log('Registering Relay client');
             tdClient = ws;
 
             // handler for messages from TD
@@ -105,7 +105,7 @@ wss.on("connection",
                         
                         if(data.command == 'reset') {
                         
-                            console.log('Received reset command from TD');
+                            console.log('Received reset command from Relay');
                             for(var a in playerData) {
                                 delete playerData[a];
                             }
@@ -115,7 +115,7 @@ wss.on("connection",
                               }
                             });
                         } else if (data.command == 'SIGTERM_ET_ALL') {
-                            console.log('Received terminate command from TD');
+                            console.log('Received terminate command from Relay');
                             for(var a in playerData) {
                                 delete playerData[a];
                             }

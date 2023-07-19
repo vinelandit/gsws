@@ -32,13 +32,6 @@ const playerClients = {};
 
 var tdClient = null;
 
-setInterval(function() {
-
-    if(tdClient != null && playerData != {}) {
-        tdClient.send(JSON.stringify(playerData));   
-    }
-
-}, 20);
 
 if(isLocal) {
 
@@ -114,7 +107,7 @@ wss.on("connection",
                                 client.close();
                               }
                             });
-                        } else if (data.command == 'SIGTERM_ET_ALL') {
+                        } else if (data.command == 'SIGTERM_ALL') {
                             console.log('Received terminate command from Relay');
                             for(var a in playerData) {
                                 delete playerData[a];
@@ -152,7 +145,7 @@ wss.on("connection",
                     // console.log(data);
                     if(data.pid && data.pid > 0) {
 
-                        playerData['' + data.pid] = data;
+                        tdClient.send(JSON.stringify(data));
                     }
 
                     if(data.pid && data.pid == 'echo') {

@@ -120,7 +120,7 @@ wss.on("connection",
                                 client.close();
                               }
                             });
-                        } else if (data.command == 'updatePlayhead') {
+                        } else {
 
                             for(var a in playerClients) {
                                 playerClients[a].send(JSON.stringify(data));

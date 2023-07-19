@@ -87,7 +87,7 @@ wss.on("connection",
             console.log('Registering Relay client');
             tdClient = ws;
 
-            // handler for messages from TD
+            // handler for messages from Relay
             ws.onmessage =
             (event) =>
             {
@@ -120,6 +120,12 @@ wss.on("connection",
                                 client.close();
                               }
                             });
+                        } else if (data.command == 'updatePlayhead') {
+
+                            for(var a in playerClients) {
+                                playerClients[a].send(JSON.stringify(data));
+                            }
+                            
                         }
                         
                     }
@@ -142,9 +148,12 @@ wss.on("connection",
                 if(event.data != '2::' && event.data != '') { // ignore keepalive ping
                     
                     const data = JSON.parse(event.data);
+                    
+                    console.log('DATA', data);
+
                     // console.log(data);
                     if(data.pid && data.pid > 0) {
-
+                        console.log('sending to relay');
                         tdClient.send(JSON.stringify(data));
                     }
 
